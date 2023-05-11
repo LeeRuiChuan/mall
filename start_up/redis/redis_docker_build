@@ -1,0 +1,28 @@
+1. 创建挂载目录
+mkdir -p /docker/redis
+mkdir -p /docker/redis/data
+
+2. 进入挂载目录
+cd /docker/redis
+
+3. 下载 redis.conf 文件
+wget http://download.redis.io/redis-stable/redis.conf
+
+4. 更改 redis.conf 文件的权限
+chmod 777 redis.conf
+
+docker run --name redis -p 6379:6379 \
+-v /opt/redis/redis.conf:/etc/redis/redis.conf \
+-v /opt/redis/data:/data \
+-d redis \
+redis-server /etc/redis/redis.conf \
+--appendonly yes
+
+# 或额外添加 privileged 配置
+docker run --name redis -p 6379:6379 \
+--privileged=true \
+-v /docker/redis/redis.conf:/etc/redis/redis.conf \
+-v /docker/redis/data:/data \
+-d redis \
+redis-server /etc/redis/redis.conf \
+--appendonly yes

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.supermarket.product.dao.ProductDao">
-    <insert id="insertProduct" parameterType="com.supermarket.common.domain.Product">
+<mapper namespace="com.muzili.product.dao.ProductDao">
+    <insert id="insertProduct" parameterType="Product">
         insert into `t_product`
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="productId != null">`product_id`,</if>
@@ -24,7 +24,7 @@
             <if test="productDescription != null">#{productDescription},</if>
         </trim>
     </insert>
-    <update id="updateProduct" parameterType="com.supermarket.common.domain.Product">
+    <update id="updateProduct" parameterType="Product">
         update `t_product`
         <set>
             <if test="productName != null">product_name = #{productName},</if>
@@ -42,15 +42,15 @@
         select count(1) from `t_product`;
     </select>
 
-    <select id="queryProductsByPage" resultType="com.supermarket.common.domain.Product">
+    <select id="queryProductsByPage" resultType="Product">
         select * from `t_product` limit #{start}, #{rows};
     </select>
-    <select id="queryByProductId" resultType="com.supermarket.common.domain.Product">
+    <select id="queryByProductId" resultType="Product">
         select * from `t_product` where `product_id` = #{productId};
     </select>
 
     <!--  查询全部商品  -->
-    <select id="selectProducts" resultType="com.supermarket.common.domain.Product">
+    <select id="selectProducts" resultType="Product">
         select * from `t_product`;
     </select>
 

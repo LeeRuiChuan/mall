@@ -1,5 +1,5 @@
 FROM openjdk:11.0.7-jre
-MAINTAINER ZongXiangrui<zxr@tju.edu.cn>
+MAINTAINER muzili<chuan_job@163.com>
 ENV APP_PORT=10000
 EXPOSE ${APP_PORT}
 ARG JAR_FILE

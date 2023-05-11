@@ -1,5 +1,5 @@
 FROM openjdk:8
-MAINTAINER ZongXiangrui<zxr@tju.edu.cn>
+MAINTAINER muzili<chuan_job@163.com>
 RUN cd /opt && wget https://raw.githubusercontent.com/MyCATApache/Mycat-download/master/1.5-RELEASE/Mycat-server-1.5.1-RELEASE-20161130213509-linux.tar.gz
 RUN cd /opt && tar -zxvf /opt/Mycat-server-1.5.1-RELEASE-20161130213509-linux.tar.gz
 RUN rm -rf /opt/Mycat-server-1.5.1-RELEASE-20161130213509-linux.tar.gz

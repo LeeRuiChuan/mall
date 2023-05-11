@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.supermarket.instantbuy.dao.InstantBuyDao">
+<mapper namespace="com.muzili.instantbuy.dao.InstantBuyDao">
 
     <sql id="selectItemConditions">
         <where>
@@ -40,14 +40,14 @@
     </update>
 
     <!--  查询所有秒杀商品  -->
-    <select id="selectItems" resultType="com.supermarket.common.domain.InstantBuyItem">
+    <select id="selectItems" resultType="InstantBuyItem">
         select * from `instant_buy_item`
         where date_sub(`start_time`, interval 500 day) &lt; #{date}
         and #{date} &lt; date_add(`end_time`, interval 500 day);
     </select>
 
     <!--  查询单个秒杀商品  -->
-    <select id="selectItem" resultType="com.supermarket.common.domain.InstantBuyItem">
+    <select id="selectItem" resultType="InstantBuyItem">
         select * from `instant_buy_item`
         <include refid="selectItemConditions"/>
     </select>

@@ -1,5 +1,5 @@
 FROM redis:3.2.11 AS base
-MAINTAINER ZongXiangrui<zxr@tju.edu.cn>
+MAINTAINER muzili<chuan_job@163.com>
 COPY redis-trib.rb /usr/local/bin
 
 FROM ruby:2.2.5-alpine AS requirements

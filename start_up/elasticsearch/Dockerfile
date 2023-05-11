@@ -1,5 +1,5 @@
 FROM elasticsearch:6.8.6
-MAINTAINER ZongXiangrui<zxr@tju.edu.cn>
+MAINTAINER muzili<chuan_job@163.com>
 RUN echo "http.cors.enabled: true" >> /usr/share/elasticsearch/config/elasticsearch.yml
 RUN echo "http.cors.allow-origin: /.*/" >> /usr/share/elasticsearch/config/elasticsearch.yml
 RUN echo "xpack.security.enabled: false" >> /usr/share/elasticsearch/config/elasticsearch.yml

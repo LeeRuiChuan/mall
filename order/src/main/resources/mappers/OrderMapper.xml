@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.supermarket.order.dao.OrderDao">
+<mapper namespace="com.muzili.order.dao.OrderDao">
 
     <!--  选择语句复用  -->
     <sql id="selectOrderConditions">
@@ -49,7 +49,7 @@
     </sql>
 
     <!--  增加订单和商品  -->
-    <insert id="addOrderAndItem" parameterType="com.supermarket.common.domain.Order">
+    <insert id="addOrderAndItem" parameterType="Order">
         insert into `t_order`
         (`order_id`, `order_money`, `order_receiverinfo`, `order_paystate`, `order_time`, `user_id`)
         values (#{orderId}, #{orderMoney}, #{orderReceiverinfo}, #{orderPaystate}, #{orderTime}, #{userId});
@@ -63,12 +63,12 @@
     </insert>
 
     <!--  增加订单  -->
-    <insert id="addOrder" parameterType="com.supermarket.common.domain.Order">
+    <insert id="addOrder" parameterType="Order">
         <include refid="insertOrder"/>
     </insert>
 
     <!--  删除订单  -->
-    <delete id="deleteOrder" parameterType="com.supermarket.common.domain.Order">
+    <delete id="deleteOrder" parameterType="Order">
         delete from `t_order`
         <include refid="selectOrderConditions"/>
     </delete>
@@ -80,7 +80,7 @@
     </delete>
 
     <!--  查询订单  -->
-    <select id="selectOrder" resultType="com.supermarket.common.domain.Order">
+    <select id="selectOrder" resultType="Order">
         select * from `t_order`
         <include refid="selectOrderConditions"/>
     </select>
@@ -92,7 +92,7 @@
     </select>
 
     <!--  查询订单商品  -->
-    <select id="selectOrderItems" resultType="com.supermarket.common.domain.OrderItem">
+    <select id="selectOrderItems" resultType="OrderItem">
         select * from `t_order_item`
         <include refid="selectItemConditions" />
     </select>

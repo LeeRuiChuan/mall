@@ -1,13 +1,13 @@
 # start up mysql
 docker network create --driver bridge --subnet 192.167.0.0/16 --gateway 192.167.0.1 net-mysql
-docker run --name dn1_host1 --restart always --net net-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -v /home/mysql/dn1_host1:/var/lib/mysql -d zongxr/mysql:5.7.37
+docker run --name dn1_host1 --restart always --net net-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=root -v /home/mysql/dn1_host1:/var/lib/mysql -d muzili/mall-mysql
 # each mysql node sleep 1s for the reason that we set second timestamp to server-id
 sleep 1s
-docker run --name dn1_host2 --restart always --net net-mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root -v /home/mysql/dn1_host2:/var/lib/mysql -d zongxr/mysql:5.7.37
+docker run --name dn1_host2 --restart always --net net-mysql -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root -v /home/mysql/dn1_host2:/var/lib/mysql -d muzili/mall-mysql
 sleep 1s
-docker run --name dn2_host1 --restart always --net net-mysql -p 3308:3306 -e MYSQL_ROOT_PASSWORD=root -v /home/mysql/dn2_host1:/var/lib/mysql -d zongxr/mysql:5.7.37
+docker run --name dn2_host1 --restart always --net net-mysql -p 3308:3306 -e MYSQL_ROOT_PASSWORD=root -v /home/mysql/dn2_host1:/var/lib/mysql -d muzili/mall-mysql
 sleep 1s
-docker run --name dn2_host2 --restart always --net net-mysql -p 3309:3306 -e MYSQL_ROOT_PASSWORD=root -v /home/mysql/dn2_host2:/var/lib/mysql -d zongxr/mysql:5.7.37
+docker run --name dn2_host2 --restart always --net net-mysql -p 3309:3306 -e MYSQL_ROOT_PASSWORD=root -v /home/mysql/dn2_host2:/var/lib/mysql -d muzili/mall-mysql
 sleep 10s
 
 # exec the DDL
@@ -35,7 +35,7 @@ docker exec dn2_host1 mysql -uroot -proot -e "show slave status;start slave;"
 docker exec dn2_host2 mysql -uroot -proot -e "show slave status;start slave;"
 
 # start up mycat
-mkdir -p /home/mysql/mycat/conf
+mkdir -p /opt/mysql/mycat/conf
 cp ../mycat/conf /home/mysql/mycat
 docker run --name mycat --restart always --net net-mysql -p 8066:8066 -p 9066:9066 -v /home/mysql/mycat/conf:/opt/mycat/conf -d zongxr/mycat:1.15.1
 sleep 5s
